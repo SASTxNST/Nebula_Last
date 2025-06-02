@@ -47,8 +47,11 @@ const galleryItemsData = [
 
 const VisualDiary = () => {
   return (
-    <div className="flex h-screen flex-col bg-black px-4 pb-6 pt-[72px] text-white">
-      <div className="mx-auto flex w-full flex-1 flex-col max-w-7xl">
+    <div
+      className="fp-scrollable h-full w-full overflow-y-auto bg-black px-4 pb-6 pt-[72px] text-white"
+      style={{ height: '100vh' }}
+    >
+      <div className="mx-auto flex w-full flex-col max-w-7xl">
         <div className="mb-6 text-center md:mb-8">
           <h1 className="mb-1 text-3xl font-bold md:text-4xl">Gallery</h1>
           <p className="text-sm text-gray-400 md:text-base">
@@ -56,7 +59,7 @@ const VisualDiary = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 overflow-auto px-1 sm:grid-cols-3 md:grid-cols-4 md:px-0">
+        <div className="grid grid-cols-2 gap-4 px-1 sm:grid-cols-3 md:grid-cols-4 md:px-0">
           {galleryItemsData.map((item) => (
             <div key={item.id} className="overflow-hidden rounded-lg">
               <Image

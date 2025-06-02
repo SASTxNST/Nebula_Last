@@ -115,7 +115,7 @@ const Contact = () => {
             >
               <FaEnvelope size={36} className="text-blue-400 mb-4" />
               <span className="text-xl sm:text-2xl font-semibold mb-2">Email</span>
-              <span className="text-sm text-gray-400 text-center">contact@sast.org</span>
+              <span className="text-sm text-gray-400 text-center">sast@rishihood.edu.in</span>
             </a>
 
             <a

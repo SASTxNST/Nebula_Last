@@ -2,12 +2,11 @@
 const nextConfig = {
   images: {
     domains: [
-      'i.postimg.cc',
-      'avatars.githubusercontent.com',
-      'd3dyfaf3iutrxo.cloudfront.net',
-      'scontent-sof1-2.cdninstagram.com',
-      'media.licdn.com',
-      // Add any other domains you might use for images
+      "i.postimg.cc",
+      "avatars.githubusercontent.com",
+      "d3dyfaf3iutrxo.cloudfront.net",
+      "scontent-sof1-2.cdninstagram.com",
+      "media.licdn.com",
     ],
   },
 };

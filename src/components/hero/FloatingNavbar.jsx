@@ -65,7 +65,7 @@ const FloatingNavbar = ({ showLoginState }) => {
         router.push("/profile");
         break;
       case "Contribute":
-        window.open("https://github.com/SASTxNST/Nebula", "_blank");
+        window.open("https://github.com/SASTxNST/", "_blank");
         break;
       default:
         break;
@@ -114,9 +114,8 @@ const FloatingNavbar = ({ showLoginState }) => {
           <AnimatePresence>
             <motion.div
               layout
-              className={`absolute bottom-1 top-1 rounded-full ${
-                hovered === "Contribute" ? "bg-pink-500/20" : "bg-white/10"
-              }`}
+              className={`absolute bottom-1 top-1 rounded-full ${hovered === "Contribute" ? "bg-pink-500/20" : "bg-white/10"
+                }`}
               initial={false}
               animate={{
                 left: hoverStyle.left,
@@ -141,13 +140,12 @@ const FloatingNavbar = ({ showLoginState }) => {
                   handleNavigation(item);
                 }
               }}
-              className={`relative z-10 cursor-pointer px-4 py-2 text-sm whitespace-nowrap ${
-                item === "Contribute"
-                  ? "font-semibold text-pink-400"
-                  : item === "Profile"
-                    ? "font-semibold text-blue-400"
-                    : "text-white"
-              }`}
+              className={`relative z-10 cursor-pointer px-4 py-2 text-sm whitespace-nowrap ${item === "Contribute"
+                ? "font-semibold text-pink-400"
+                : item === "Profile"
+                  ? "font-semibold text-blue-400"
+                  : "text-white"
+                }`}
             >
               {item}
             </div>
@@ -184,13 +182,12 @@ const FloatingNavbar = ({ showLoginState }) => {
                       handleNavigation(item);
                     }
                   }}
-                  className={`text-lg cursor-pointer py-2 ${
-                    item === "Contribute"
-                      ? "font-semibold text-pink-400"
-                      : item === "Profile"
-                        ? "font-semibold text-blue-400"
-                        : "text-white hover:text-gray-300"
-                  }`}
+                  className={`text-lg cursor-pointer py-2 ${item === "Contribute"
+                    ? "font-semibold text-pink-400"
+                    : item === "Profile"
+                      ? "font-semibold text-blue-400"
+                      : "text-white hover:text-gray-300"
+                    }`}
                 >
                   {item}
                 </div>

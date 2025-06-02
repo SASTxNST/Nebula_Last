@@ -40,28 +40,28 @@ function Page() {
     <>
       <FloatingNavbar showLoginState={{ setShowLoginPopup }} />
 
-        <div className="section">
-          <NebulaHero />
-        </div>
-        <div className="section">
-          <About />
-        </div>
-        <div className="section">
-          <GitHubShowcase />
-        </div>
-        <div className="section">
-          <AutoScrollingTestimonials />
-        </div>
-        <div className="section">
-          <VisualDiary />
-        </div>
-        <div className="section">
-          <EventsSection />
-        </div>
-        <div className="section">
-          <TeamPage />
-          <Footer />
-        </div>
+      <div className="section">
+        <NebulaHero />
+      </div>
+      <div className="section">
+        <About />
+      </div>
+      <div className="section">
+        <GitHubShowcase />
+      </div>
+      <div className="section">
+        <AutoScrollingTestimonials />
+      </div>
+      <div className="section">
+        <VisualDiary />
+      </div>
+      <div className="section">
+        <EventsSection />
+      </div>
+      <div className="section">
+        <TeamPage />
+        <Footer />
+      </div>
 
       {showLoginPopup && (
         <LoginFormPopup

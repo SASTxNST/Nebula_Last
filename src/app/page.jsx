@@ -11,7 +11,6 @@ import EventsSection from "@/components/hero/EventsSection";
 import TeamPage from "@/components/hero/TeamPage";
 import LoginFormPopup from "@/components/LoginFormPopup";
 import Footer from "@/components/hero/Footer";
-import FullPageWrapper from "@/components/hero/FullPageWrapper";
 
 function Page() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -19,14 +18,17 @@ function Page() {
   const [isClient, setIsClient] = useState(false);
 
   const router = useRouter();
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
   }, []);
+
   useEffect(() => {
     const timeout = setTimeout(() => setIsClient(true), 50);
     return () => clearTimeout(timeout);
   }, []);
+
   useEffect(() => {
     document.body.style.overflow = showLoginPopup ? "hidden" : "";
     return () => {
@@ -40,27 +42,35 @@ function Page() {
     <>
       <FloatingNavbar showLoginState={{ setShowLoginPopup }} />
 
-      <div className="section">
-        <NebulaHero />
-      </div>
-      <div className="section">
-        <About />
-      </div>
-      <div className="section">
-        <GitHubShowcase />
-      </div>
-      <div className="section">
-        <AutoScrollingTestimonials />
-      </div>
-      <div className="section">
-        <VisualDiary />
-      </div>
-      <div className="section">
-        <EventsSection />
-      </div>
-      <div className="section">
-        <TeamPage />
-        <Footer />
+      <div className="snap-container">
+        <section className="snap-section">
+          <NebulaHero />
+        </section>
+
+        <section className="snap-section">
+          <About />
+        </section>
+
+        <section className="snap-section">
+          <GitHubShowcase />
+        </section>
+
+        <section className="snap-section">
+          <AutoScrollingTestimonials />
+        </section>
+
+        <section className="snap-section">
+          <VisualDiary />
+        </section>
+
+        <section className="snap-section">
+          <EventsSection />
+        </section>
+
+        <section className="snap-section">
+          <TeamPage />
+          <Footer />
+        </section>
       </div>
 
       {showLoginPopup && (
@@ -75,6 +85,49 @@ function Page() {
           }}
         />
       )}
+
+      <style jsx global>{`
+        .snap-container {
+          height: 100vh;
+          overflow-y: scroll;
+          scroll-snap-type: y mandatory;
+          scroll-behavior: smooth;
+        }
+
+        .snap-section {
+          min-height: 100vh;
+          scroll-snap-align: start;
+          scroll-snap-stop: always;
+          position: relative;
+        }
+
+        /* Optional: Add smooth transitions */
+        .snap-section {
+          transition: transform 0.3s ease-in-out;
+        }
+
+        /* Disable scroll snap on mobile for better UX */
+        @media (max-width: 768px) {
+          .snap-container {
+            scroll-snap-type: none;
+          }
+          
+          .snap-section {
+            scroll-snap-align: none;
+            scroll-snap-stop: normal;
+          }
+        }
+
+        /* Hide scrollbar but keep functionality */
+        .snap-container::-webkit-scrollbar {
+          display: none;
+        }
+        
+        .snap-container {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
     </>
   );
 }

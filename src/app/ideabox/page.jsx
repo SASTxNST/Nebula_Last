@@ -7,6 +7,7 @@ const IdeaForm = () => {
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState("");
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setStatus("Sending...");

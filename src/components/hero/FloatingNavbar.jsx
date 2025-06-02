@@ -18,7 +18,7 @@ const FloatingNavbar = ({ showLoginState }) => {
   const [hovered, setHovered] = useState("Login");
   const [hoverStyle, setHoverStyle] = useState({ left: 0, width: 0 });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // New state for mobile menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const containerRef = useRef(null);
   const itemRefs = useRef({});
   const router = useRouter();

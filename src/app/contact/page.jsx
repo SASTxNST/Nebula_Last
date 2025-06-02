@@ -37,10 +37,10 @@ const Contact = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Accept: "application/json", 
+          Accept: "application/json",
         },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_ACCESS_KEY", 
+          access_key: "YOUR_WEB3FORMS_ACCESS_KEY",
           subject: formData.subject || "Contact Form Submission",
           name: formData.name,
           email: formData.email,
@@ -110,7 +110,7 @@ const Contact = () => {
             className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 mx-auto"
           >
             <a
-              href="mailto:contact@sast.org"
+              href="mailto:sast@rishihood.edu.in"
               className="flex flex-col items-center p-6 sm:p-8 rounded-2xl bg-white/5 backdrop-blur-md border border-white/10 text-white w-48 sm:w-56 md:w-60 transition-all duration-300 shadow-lg hover:scale-105 hover:shadow-blue-500/30"
             >
               <FaEnvelope size={36} className="text-blue-400 mb-4" />
@@ -202,11 +202,10 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`w-full py-3 sm:py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-md ${
-                  isSubmitting
-                    ? "bg-gray-600 cursor-not-allowed"
-                    : "bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 cursor-pointer shadow-blue-500/40 hover:shadow-blue-500/60"
-                }`}
+                className={`w-full py-3 sm:py-4 rounded-xl font-bold text-lg transition-all duration-300 shadow-md ${isSubmitting
+                  ? "bg-gray-600 cursor-not-allowed"
+                  : "bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 cursor-pointer shadow-blue-500/40 hover:shadow-blue-500/60"
+                  }`}
               >
                 {isSubmitting ? "Sending..." : "Send Message"}
               </button>
@@ -214,9 +213,8 @@ const Contact = () => {
 
             {submitStatus && (
               <p
-                className={`mt-4 text-center font-semibold text-sm sm:text-base ${
-                  submitStatus.success ? "text-green-500" : "text-red-500"
-                }`}
+                className={`mt-4 text-center font-semibold text-sm sm:text-base ${submitStatus.success ? "text-green-500" : "text-red-500"
+                  }`}
               >
                 {submitStatus.message}
               </p>

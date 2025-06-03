@@ -1,6 +1,7 @@
 "use client";
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+import Slider from "react-slick";
 import { FaUsers, FaHandshake, FaRocket, FaStar } from "react-icons/fa";
 
 const TeamPage = () => {
@@ -92,64 +93,64 @@ const TeamPage = () => {
         "https://scontent-sof1-2.cdninstagram.com/v/t51.2885-19/469386494_566828359423975_7909603751952130678_n.jpg?stp=dst-jpg_s160x160_tt6&_nc_cat=107&ccb=1-7&_nc_sid=bf7eb4&_nc_ohc=1KxEx9iW-kMQ7kNvwEw5ac_&_nc_oc=AdkvurIgou8t9KrfLCTO1X1jI4HeavVcS_8PqrhQPYL4AcRc88luaJyvGDdH2pWgOx8Wn8VNlLqM8s1VGluTEFxW&_nc_zt=24&_nc_ht=scontent-sof1-2.cdninstagram.com&oh=00_AfIyzra2D5ddPMfZDJvcJF_ir61vxr2vPM-n_F9WeSTa0A&oe=68428B67",
     },
 
-    // Community & Media
     
   ];
 
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 700,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    centerMode: true,
+    centerPadding: "0px",
+    autoplay: true,
+    autoplaySpeed: 3000,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: { slidesToShow: 2 },
+      },
+      {
+        breakpoint: 640,
+        settings: { slidesToShow: 1 },
+      },
+    ],
+  };
+
   return (
     <div className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden bg-black px-6 py-20">
-      {/* Background gradients and icons for visual flair */}
+      {/* Background gradients and icons */}
       <div className="absolute left-[-5rem] top-[-5rem] h-96 w-96 rounded-full bg-gradient-to-tr from-indigo-900 via-blue-900 to-cyan-800 blur-[120px] opacity-20" />
       <div className="absolute bottom-[-5rem] right-[-5rem] h-96 w-96 rounded-full bg-gradient-to-br from-purple-900 via-pink-900 to-red-900 blur-[120px] opacity-20" />
+      <FaUsers className="pointer-events-none absolute left-16 top-20 text-indigo-700 blur-sm opacity-10" size={140} />
+      <FaHandshake className="pointer-events-none absolute bottom-28 right-20 text-pink-700 blur-sm opacity-10" size={130} />
+      <FaRocket className="pointer-events-none absolute right-24 top-40 text-cyan-600 blur-sm opacity-10" size={150} />
+      <FaStar className="pointer-events-none absolute bottom-36 left-24 text-purple-600 blur-sm opacity-10" size={120} />
 
-      <FaUsers
-        className="pointer-events-none absolute left-16 top-20 text-indigo-700 blur-sm opacity-10"
-        size={140}
-      />
-      <FaHandshake
-        className="pointer-events-none absolute bottom-28 right-20 text-pink-700 blur-sm opacity-10"
-        size={130}
-      />
-      <FaRocket
-        className="pointer-events-none absolute right-24 top-40 text-cyan-600 blur-sm opacity-10"
-        size={150}
-      />
-      <FaStar
-        className="pointer-events-none absolute bottom-36 left-24 text-purple-600 blur-sm opacity-10"
-        size={120}
-      />
+      {/* Title */}
+      <h2 className="z-10 mb-16 text-center text-5xl font-bold tracking-wide text-white">Meet The Team</h2>
 
-      {/* Page Title */}
-      <h2 className="z-10 mb-16 text-center text-5xl font-bold tracking-wide text-white md:text-5xl">
-        Meet The Team
-      </h2>
-
-      {/* Team Members Grid */}
-      <div className="z-10 grid w-full max-w-6xl grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
-        {teamMembers.map((member, idx) => (
-          <div
-            key={idx}
-            className="relative flex flex-col items-center rounded-2xl bg-white/5 p-6 text-center shadow-xl backdrop-blur-md"
-          >
-            {/* Member Photo */}
-            <Image
-              src={member.photo}
-              alt={member.name}
-              width={112}
-              height={112}
-              className="mb-6 rounded-full border-2 border-white/20 object-cover"
-            />
-
-            {/* Member Details */}
-            <h3 className="mb-1 text-xl font-semibold text-white">
-              {member.name}
-            </h3>
-            <p className="mb-3 italic text-purple-300 text-sm">{member.role}</p>
-            <p className="leading-relaxed text-white/80 text-sm">
-              {member.bio}
-            </p>
-          </div>
-        ))}
+      {/* Carousel */}
+      <div className="z-10 w-full max-w-6xl">
+        <Slider {...settings}>
+          {teamMembers.map((member, idx) => (
+            <div key={idx} className="px-4">
+              <div className="relative flex flex-col items-center rounded-2xl bg-white/5 p-6 text-center shadow-xl backdrop-blur-md h-full">
+                <Image
+                  src={member.photo}
+                  alt={member.name}
+                  width={112}
+                  height={112}
+                  className="mb-6 rounded-full border-2 border-white/20 object-cover"
+                />
+                <h3 className="mb-1 text-xl font-semibold text-white">{member.name}</h3>
+                <p className="mb-3 italic text-purple-300 text-sm">{member.role}</p>
+                <p className="leading-relaxed text-white/80 text-sm">{member.bio}</p>
+              </div>
+            </div>
+          ))}
+        </Slider>
       </div>
     </div>
   );

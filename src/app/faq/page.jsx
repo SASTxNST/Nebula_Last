@@ -53,7 +53,7 @@ const FAQ = () => {
     {
       question: "How can I join SAST?",
       answer:
-        "To join SAST, please reach out to us through any of our contact channels. We're always looking for passionate individuals interested in astrophysics and space technology!",
+        "To join SAST, please reach out to us through any of our contact channels. We're always looking for passionate individuals interested in Aerospace, Astrophysics and Space Technology!",
     },
     {
       question: "Can I suggest new features or projects?",

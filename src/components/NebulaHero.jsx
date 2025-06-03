@@ -209,8 +209,8 @@ const NebulaHero = () => {
         }
 
         .live-indicator {
-          width: 10px;
-          height: 10px;
+          width: 7px;
+          height: 7px;
           background: #00ff88;
           border-radius: 50%;
           animation: pulse 2s infinite;

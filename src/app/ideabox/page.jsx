@@ -27,7 +27,7 @@ const IdeaForm = () => {
       const result = await response.json();
 
       if (result.success) {
-        setStatus("✅ Sent successfully!");
+        setStatus("Your Idea has been Submitted!");
         setIdea("");
         setEmail("");
       } else {
@@ -73,7 +73,7 @@ const IdeaForm = () => {
             type="submit"
             className="rounded-lg bg-cyan-500 py-3 font-semibold text-white transition hover:bg-cyan-600"
           >
-            🚀 Submit Idea
+            🚀 Submit Your Idea
           </button>
 
           {status && (

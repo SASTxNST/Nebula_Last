@@ -11,6 +11,9 @@ import EventsSection from "@/components/hero/EventsSection";
 import TeamPage from "@/components/hero/TeamPage";
 import LoginFormPopup from "@/components/LoginFormPopup";
 import Footer from "@/components/hero/Footer";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
 
 function Page() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

@@ -88,7 +88,7 @@ const NebulaHero = () => {
         <div className="live-button-container">
           <div className="live-button">
             <div className="live-indicator"></div>
-            <span>LIVE</span>
+            <span>Live</span>
             <div className="dynamic-island">
               <div className="island-content">
                 <div className="date-section">

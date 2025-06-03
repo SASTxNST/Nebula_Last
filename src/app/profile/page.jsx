@@ -421,7 +421,7 @@ const Profile = ({ repositories }) => {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-3 sm:mb-4 border-b border-[#30363d] pb-2 sm:pb-3">
           <h2 className="text-base sm:text-lg font-semibold text-[#e6edf3]">Activity Over Time</h2>
           <div className="flex space-x-1 bg-[#0d1117] rounded-md p-1 border border-[#30363d]">
-            {["commits", "issues", "prs"].map((type) => (
+            {["commits", "issues", "PRs"].map((type) => (
               <button
                 key={type}
                 onClick={() => setLineChartType(type)}

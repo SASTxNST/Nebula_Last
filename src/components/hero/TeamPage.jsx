@@ -34,17 +34,19 @@ const TeamPage = () => {
       photo: "https://avatars.githubusercontent.com/u/36405347?v=4",
     },
     {
+      name: "Prataya Silla",
+      role: "UI/UX Lead",
+      bio: "Designs intuitive and engaging user interfaces that enhance user experience across all touchpoints.",
+      photo:
+        "https://d3dyfaf3iutrxo.cloudfront.net/thumbnail/user/8bd8e4c4b408476abf043bdf7d652527.jpeg",
+    },
+    {
       name: "Abhinav Bajpai",
       role: "Developer",
       bio: "Focused on creating seamless and visually engaging web experiences with clean, scalable code.",
       photo: "https://avatars.githubusercontent.com/u/43998907?v=4",
     },
-    {
-      name: "Pratyush Parida",
-      role: "Developer",
-      bio: "Back-end enthusiast who ensures that data flows securely and efficiently through every digital system.",
-      photo: "https://avatars.githubusercontent.com/u/68473509?v=4",
-    },
+    
     {
       name: "Kunal Vats",
       role: "Developer",
@@ -52,14 +54,26 @@ const TeamPage = () => {
       photo:
         "https://d3dyfaf3iutrxo.cloudfront.net/thumbnail/user/e496931dbf11497585565f81036b81b2.jpeg",
     },
-
-    // UI/UX
     {
-      name: "Prataya Silla",
-      role: "UI/UX Lead",
-      bio: "Designs intuitive and engaging user interfaces that enhance user experience across all touchpoints.",
+      name: "Pratyush Parida",
+      role: "Developer",
+      bio: "Back-end enthusiast who ensures that data flows securely and efficiently through every digital system.",
+      photo: "https://avatars.githubusercontent.com/u/68473509?v=4",
+    },
+    
+    {
+      name: "Rashmi Anand",
+      role: "Community Manager - Nebula",
+      bio: "Fosters engagement, collaboration, and inclusivity in the Nebula project community.",
       photo:
-        "https://d3dyfaf3iutrxo.cloudfront.net/thumbnail/user/8bd8e4c4b408476abf043bdf7d652527.jpeg",
+        "https://d3dyfaf3iutrxo.cloudfront.net/thumbnail/user/c8b40d3f68c543eda4c6ec39eb097310.jpeg",
+    },
+    {
+      name: "Shaurya Sharma",
+      role: "Social Media",
+      bio: "Amplifies our mission through digital platforms, growing the community and keeping everyone inspired.",
+      photo:
+        "https://d3dyfaf3iutrxo.cloudfront.net/thumbnail/user/0bc14255948f472982d959e60cc01b69.jpeg",
     },
 
     // Website Team
@@ -79,20 +93,7 @@ const TeamPage = () => {
     },
 
     // Community & Media
-    {
-      name: "Rashmi Anand",
-      role: "Community Manager - Nebula",
-      bio: "Fosters engagement, collaboration, and inclusivity in the Nebula project community.",
-      photo:
-        "https://d3dyfaf3iutrxo.cloudfront.net/thumbnail/user/c8b40d3f68c543eda4c6ec39eb097310.jpeg",
-    },
-    {
-      name: "Shaurya Sharma",
-      role: "Social Media",
-      bio: "Amplifies our mission through digital platforms, growing the community and keeping everyone inspired.",
-      photo:
-        "https://d3dyfaf3iutrxo.cloudfront.net/thumbnail/user/0bc14255948f472982d959e60cc01b69.jpeg",
-    },
+    
   ];
 
   return (

@@ -7,7 +7,7 @@ const TopStatsBlock = ({
   nextFetchTime,
 }) => {
   return (
-    <div className="mb-6 flex flex-col items-center justify-center rounded-xl bg-[#1E1E3F] p-4">
+    <div className="mb-6 flex flex-col items-center justify-center rounded-xl bg-[#161B22] p-4">
       <p className="mb-2 text-sm text-gray-300">Profile Insights</p>
       <div className="text-center">
         <p className="text-xs text-gray-400">Top Languages:</p>

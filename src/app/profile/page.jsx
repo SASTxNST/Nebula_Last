@@ -20,6 +20,7 @@ const ContributionGraph = dynamic(() => import("react-github-calendar"), {
 });
 
 const Profile = ({ repositories }) => {
+  const repoName = "SASTxNST/Website_SAST";
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
     username: "",
@@ -157,9 +158,9 @@ const Profile = ({ repositories }) => {
       console.log(`Fetching data for GitHub ID: ${formData.githubId}`);
       const [userEventsRes, repoEventsRes, repoRes, contributorsRes] = await Promise.allSettled([
         fetch(`https://api.github.com/users/${formData.githubId}/events`),
-        fetch(`https://api.github.com/repos/karn-cyber/Nebula_last/events`),
-        fetch("https://api.github.com/repos/karn-cyber/Nebula_last"),
-        fetch("https://api.github.com/repos/karn-cyber/Nebula_last/contributors"),
+        fetch(`https://api.github.com/repos/SASTxNST/Website_SAST/events`),
+        fetch("https://api.github.com/repos/SASTxNST/Website_SAST"),
+        fetch("https://api.github.com/repos/SASTxNST/Website_SAST/contributors"),
       ]);
 
       // Log response headers to check rate limits
@@ -208,7 +209,7 @@ const Profile = ({ repositories }) => {
         userEvents.forEach((event) => {
           const dateStr = new Date(event.created_at).toLocaleDateString("en-US");
 
-          if (event.type === "PushEvent" && event.actor.login === formData.githubId) {
+          if (event.type === "PushEvent" && event.actor.login === formData.githubId && event.repo.name === repoName) {
             event.payload.commits.forEach((c) => {
               if (event.actor.login === formData.githubId) {
                 const commitExists = commits.some((commit) => commit.sha === c.sha);
@@ -227,7 +228,8 @@ const Profile = ({ repositories }) => {
           } else if (
             event.type === "PullRequestEvent" &&
             event.payload.pull_request?.merged &&
-            event.actor.login === formData.githubId
+            event.actor.login === formData.githubId &&
+            event.repo.name === repoName
           ) {
             const mergeExists = merges.some((merge) => merge.url === event.payload.pull_request.html_url);
             if (!mergeExists) {
@@ -243,7 +245,8 @@ const Profile = ({ repositories }) => {
           if (
             event.type === "IssuesEvent" &&
             event.payload.action === "opened" &&
-            event.actor.login === formData.githubId
+            event.actor.login === formData.githubId &&
+            event.repo.name === repoName
           ) {
             console.log("Issue Event:", event);
             const issueExists = issues.some((issue) => issue.url === event.payload.issue.html_url);
@@ -261,7 +264,8 @@ const Profile = ({ repositories }) => {
           if (
             event.type === "PullRequestEvent" &&
             event.payload.action === "opened" &&
-            event.actor.login === formData.githubId
+            event.actor.login === formData.githubId &&
+            event.repo.name === repoName
           ) {
             const prExists = prs.some((pr) => pr.url === event.payload.pull_request.html_url);
             if (!prExists) {

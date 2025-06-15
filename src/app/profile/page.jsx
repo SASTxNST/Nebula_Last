@@ -14,6 +14,7 @@ import {
   LineChart,
   Line,
 } from "recharts";
+import path from "path";
 
 const ContributionGraph = dynamic(() => import("react-github-calendar"), {
   ssr: false,
@@ -21,6 +22,8 @@ const ContributionGraph = dynamic(() => import("react-github-calendar"), {
 
 const Profile = ({ repositories }) => {
   const repoName = "SASTxNST/Website_SAST";
+
+
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
     username: "",
@@ -138,6 +141,33 @@ const Profile = ({ repositories }) => {
     window.location.href = "/";
   };
 
+  const fetchAllPages = async (url, options) => {
+    let results = [];
+    let nextUrl = `${url}?per_page=100`;
+
+    while (nextUrl) {
+      const response = await fetch(nextUrl, options);
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`Request failed with status ${response.status}: ${errorText}`);
+      }
+
+      const data = await response.json();
+      results = results.concat(data);
+
+      const linkHeader = response.headers.get('Link');
+      nextUrl = null;
+      if (linkHeader) {
+        const links = linkHeader.split(', ');
+        const nextLink = links.find(link => link.endsWith('rel="next"'));
+        if (nextLink) {
+          nextUrl = nextLink.match(/<(.+)>/)[1];
+        }
+      }
+    }
+    return results;
+  };
+
   const fetchAll = useCallback(async (forceRefresh = false) => {
     if (!formData.githubId) {
       console.log("No GitHub ID provided, skipping fetch.");
@@ -151,16 +181,16 @@ const Profile = ({ repositories }) => {
       return;
     }
 
-    setIsLoading(true); // Set loading state
-    setFetchError(null); // Reset error state
+    setIsLoading(true);
+    setFetchError(null);
 
     try {
       console.log(`Fetching data for GitHub ID: ${formData.githubId}`);
       const [userEventsRes, repoEventsRes, repoRes, contributorsRes] = await Promise.allSettled([
-        fetch(`https://api.github.com/users/${formData.githubId}/events`),
-        fetch(`https://api.github.com/repos/SASTxNST/Website_SAST/events`),
-        fetch("https://api.github.com/repos/SASTxNST/Website_SAST"),
-        fetch("https://api.github.com/repos/SASTxNST/Website_SAST/contributors"),
+        fetchAllPages(`https://api.github.com/users/${formData.githubId}/events`, { }),
+        fetchAllPages(`https://api.github.com/repos/${repoName}/events`, { }),
+        fetch(`https://api.github.com/repos/${repoName}`, { }), // Not paginated
+        fetchAllPages(`https://api.github.com/repos/${repoName}/contributors`, { }),
       ]);
 
       // Log response headers to check rate limits
@@ -225,7 +255,9 @@ const Profile = ({ repositories }) => {
                 }
               }
             });
-          } else if (
+          } 
+
+          if (
             event.type === "PullRequestEvent" &&
             event.payload.pull_request?.merged &&
             event.actor.login === formData.githubId &&
@@ -385,16 +417,20 @@ const Profile = ({ repositories }) => {
       }
 
       const newAchievements = [];
-      if (commits.length >= 1) newAchievements.push("First Commit 🎉");
-      if (commits.length >= 5) newAchievements.push("5 Commits 🏆");
-      if (commits.length >= 10) newAchievements.push("10 Commits 🏆");
-      if (merges.length >= 1) newAchievements.push("First PR Merged 🚀");
-      if (merges.length >= 5) newAchievements.push("5 PR Merged 🚀");
-      if (merges.length >= 10) newAchievements.push("10 PR Merged 🚀");
-      if (issues.length >= 1) newAchievements.push("First Issue Opened 📋");
-      if (issues.length >= 5) newAchievements.push("5 Issues Opened 📋");
-      if (prs.length >= 1) newAchievements.push("First PR Opened 🔧");
-      if (prs.length >= 5) newAchievements.push("5 PRs Opened 🔧");
+      // if (commits.length >= 1) newAchievements.push("First Commit 🎉");
+      // if (commits.length >= 5) newAchievements.push("5 Commits 🏆");
+      // if (commits.length >= 10) newAchievements.push("10 Commits 🏆");
+      // if (merges.length >= 1) newAchievements.push("First PR Merged 🚀");
+      // if (merges.length >= 5) newAchievements.push("5 PR Merged 🚀");
+      // if (merges.length >= 10) newAchievements.push("10 PR Merged 🚀");
+      // if (issues.length >= 1) newAchievements.push("First Issue Opened 📋");
+      // if (issues.length >= 5) newAchievements.push("5 Issues Opened 📋");
+      // if (prs.length >= 1) newAchievements.push("First PR Opened 🔧");
+      // if (prs.length >= 5) newAchievements.push("5 PRs Opened 🔧");
+      
+      if (prs.length >= 5) newAchievements.push("/Bronze.png");
+      if (prs.length >= 10) newAchievements.push("/Silver.png");
+      if (prs.length > 10) newAchievements.push("/Gold.png");
       setAchievements(newAchievements);
       console.log("Achievements:", newAchievements);
 
@@ -512,8 +548,8 @@ const Profile = ({ repositories }) => {
         {achievements.length > 0 ? (
           <div className="flex flex-wrap gap-2 sm:gap-3">
             {achievements.map((achievement, index) => (
-              <div key={index} className="bg-[#0d1117] border border-[#30363d] rounded-md px-2 py-1 text-xs sm:text-sm text-[#56d364] animate-bounce">
-                {achievement}
+              <div key={index} className="bg-[#0d1117] border border-[#30363d] rounded-md px-2 py-1 text-xs sm:text-sm text-[#56d364] h-50">
+                <img src={achievement} className="h-full"/>
               </div>
             ))}
           </div>
